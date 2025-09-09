@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Movie Recommender</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --accent:#4f46e5;
+      --muted:#6b7280;
+      --radius:12px;
+      --maxw:900px;
+    }
+    *{box-sizing:border-box;font-family:"Inter",system-ui,Segoe UI,Roboto,Arial;}
+    body{margin:0;background:var(--bg);color:#111;}
+    .container{max-width:var(--maxw);margin:48px auto;padding:20px;}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:0 6px 18px rgba(20,20,50,0.06);padding:28px;}
+    h1{margin:0 0 6px;font-weight:600;}
+    p.lead{margin:0 0 18px;color:var(--muted);}
+    form{display:flex;gap:10px;flex-wrap:wrap;}
+    input[type="text"]{
+      flex:1;min-width:220px;padding:12px 14px;border:1px solid #e6e9ef;border-radius:10px;font-size:16px;
+    }
+    button{
+      background:var(--accent);color:#fff;border:0;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer;
+      box-shadow:0 6px 14px rgba(79,70,229,0.18);
+    }
+    .foot{margin-top:14px;color:var(--muted);font-size:14px;}
+    @media (max-width:520px){
+      .container{margin:20px;padding:16px;}
+      form{flex-direction:column;}
+      button{width:100%;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>🎬 Movie Recommender</h1>
+      <p class="lead">Nhập tên phim rồi bấm <strong>Recommend</strong> — hệ thống sẽ tìm phim khớp nhất và gợi ý các phim tương tự.</p>
+
+      <!-- form gửi GET đến /recommend -->
+      <form action="/recommend" method="get" role="search">
+        <input type="text" name="title" placeholder="Enter movie name" required>
+        <button type="submit">Recommend</button>
+      </form>
+
+      <p class="foot"></p>
+    </div>
+  </div>
+</body>
+</html>
