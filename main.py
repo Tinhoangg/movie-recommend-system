@@ -1,4 +1,4 @@
-from src import MovieRecommender
+from src.content_based import MovieRecommender
 from fastapi import FastAPI, Query, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
