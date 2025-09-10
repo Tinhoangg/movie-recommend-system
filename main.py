@@ -1,7 +1,9 @@
-from src.content_based import MovieRecommender
+from struct import MovieRecommender
 from fastapi import FastAPI, Query, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+import os
+import uvicorn
 
 app = FastAPI()
 template = Jinja2Templates(directory='templates')
@@ -22,3 +24,6 @@ def recommend(request: Request, title: str = Query(...,description='movie title 
                                                    'title':match_title, 
                                                    'recommendations': recommendations
                                                    })
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Render tự set PORT
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
