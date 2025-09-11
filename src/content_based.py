@@ -1,6 +1,6 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
+from sklearn.metrics.pairwise import cosine_similarity
 import difflib
 class MovieRecommender:
 
@@ -31,6 +31,10 @@ class MovieRecommender:
             if ratio > best_ratio:
                 best_ratio = ratio
                 best_title = t
+       if best_title == None:
+          matches = difflib.get_close_matches(title, all_titles, n=1, cutoff=0.5)
+          if matches:
+              return matches[0]
 
        return best_title
     
@@ -38,7 +42,7 @@ class MovieRecommender:
        idx = self.indices[title]
 
        # calculate cosine similarity
-       cosine_sim = linear_kernel(self.vector_matrix[idx], self.vector_matrix).flatten()
+       cosine_sim = cosine_similarity(self.vector_matrix[idx], self.vector_matrix).flatten()
        sim_score = list(enumerate(cosine_sim))
 
        #sort similarity
@@ -46,6 +50,5 @@ class MovieRecommender:
        sim_score_sorted = sim_score_sorted[1:top+1]
        # get top n movie recommend
        movie_index = [i[0] for i in sim_score_sorted]
-       print(title)
        return self.df.iloc[movie_index][['title','description','director','cast','duration']]
      
