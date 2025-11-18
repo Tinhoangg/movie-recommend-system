@@ -1,9 +1,10 @@
-#  Movie Recommendation System
+# Movie Recommendation System
 
-##  Introduction
+## Introduction
 This is a **Movie Recommendation System** built with Python.  
-It suggests movies to users using:
-- **Content-based filtering** → recommends similar movies by description, cast, director, or genre.  
+It suggests movies to users using:  
+- **Content-based filtering** → recommends similar movies by description, cast, director, or genre.
+
 ---
 
 ## 🛠 Tech Stack
@@ -12,10 +13,12 @@ It suggests movies to users using:
 - **Jupyter Notebook** → exploration & experiments
 - **Scikit-learn** → similarity calculation (content-based)
 - **difflib** → fuzzy matching for movie title search
-- **FastAPI** → build RESTful API
+- **FastAPI** → RESTful API backend
 - **Uvicorn** → run API server
+- **Railway** → cloud deployment for hosting the app
 
 ---
+
 ## ⚙️ Installation
 
 ### 1. Clone the repository
@@ -23,20 +26,22 @@ It suggests movies to users using:
 git clone https://github.com/Tinhoangg/movie-recommend-system.git
 cd movie-recommend-system
 ```
-### 2. Create virtual environment (optional)
+### 2. Create virtual environment
 ```bash
 python -m venv venv
-# Activate venv
-source venv/bin/activate   # Linux / Mac
-venv\Scripts\activate      # Windows
 ```
-###  3. Install dependencies
-``` bash
+# Activate venv
+```bash
+source venv/bin/activate   # Linux / Mac
+```
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
 ```
-### 4. Run the application
+### 4. Run local
 ``` bash
 python main.py
 ```
-### 5. Open in Browser
-Web interface: http://127.0.0.1:8001/
+
+
+
