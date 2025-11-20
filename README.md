@@ -15,7 +15,6 @@ It suggests movies to users using:
 - **difflib** → fuzzy matching for movie title search
 - **FastAPI** → RESTful API backend
 - **Uvicorn** → run API server
-- **Railway** → cloud deployment for hosting the app
 
 ---
 
