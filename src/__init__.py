@@ -1,1 +1,1 @@
-from .content_based import MovieRecommender
+from .recommend_system import MovieRecommender

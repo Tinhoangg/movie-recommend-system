@@ -5,29 +5,38 @@ from fastapi.templating import Jinja2Templates
 import os
 import uvicorn
 
+#  FastAPI 
 app = FastAPI()
 template = Jinja2Templates(directory='templates')
+
+#  load MovieRecommender 
 movie_recommender = MovieRecommender()
 movie_recommender.preprocess_data()
+movie_recommender.build_nn_model()
 
+
+#  Routes 
 @app.get('/', response_class=HTMLResponse)
 def home(request: Request):
     return template.TemplateResponse('index.html', {'request': request})
 
 @app.get('/recommend', response_class=HTMLResponse)
-def recommend(request: Request, title: str = Query(..., description='movie title to search')):
+def recommend(request: Request, title: str = Query(..., description='Movie title to search')):
     match_title = movie_recommender.find_title(title)
-    recommed_movie = movie_recommender.content_based_filter(match_title)
-
     if match_title is None:
         return {"error": f"No movie found for '{title}'"}
 
-    recommendations = recommed_movie.to_dict(orient="records")
+    recommendations = movie_recommender.recommend_hybrid(match_title, top=5)
+    rec_list = recommendations.to_dict(orient="records")
+
     return template.TemplateResponse(
         'recommend.html',
         {
             'request': request,
             'title': match_title,
-            'recommendations': recommendations
+            'recommendations': rec_list
         }
     )
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
