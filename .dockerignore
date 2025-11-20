@@ -2,7 +2,6 @@ data/
 notebook/
 __pycache__/
 *.ipynb
-*.csv
 *.parquet
 *.model
 .git

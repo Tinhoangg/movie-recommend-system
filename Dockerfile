@@ -8,7 +8,7 @@ RUN pip install -r requirements.txt
 COPY src ./src
 COPY templates ./templates
 COPY main.py .
-
+COPY data ./data
 EXPOSE 8000
 
 CMD ["python", "main.py"]
